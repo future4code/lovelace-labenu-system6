@@ -7,7 +7,7 @@ export const createTeacher = async (req: Request, res: Response) => {
       //validar entradas da requisição
       const { name, email, data, specialty } = req.body;
   
-      if (!name || !email || !specialty) {
+      if (!name || !email || !data|| !specialty) {
         res.status(400).send("Preencha todos os campos");
       }
   
