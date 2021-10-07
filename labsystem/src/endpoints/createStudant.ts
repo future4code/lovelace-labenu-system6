@@ -1,39 +1,25 @@
-
 import { Request, Response } from "express";
-import insertStudant from "../data/insertStudant";
+import { insertStudant } from "../data/insertStudant";
 
-export default async function createStudant(
-    req:Request,
-    res:Response
-    ){
-        try{
-             //validar entradas da requisição
-            if(
-                !req.body.name ||
-                !req.body.email ||
-                !req.body.data 
-                
-            ){res.status(400).send('Preencha todos os campos')}
-            
-            //consultar o banco de dados
-            const id: string = Date.now() + Math.random().toString()
-            
-            await insertStudant(
-                id,
-                req.body.name, 
-                req.body.email, 
-                req.body.data, 
-            )
+export const createStudant = async (req: Request, res: Response) => {
+  try {
+    //validar entradas da requisição
+    const { name, email, data } = req.body;
 
-             
-            //responder a requisição
-            res
-            .status(400)
-            .send('Studant created!')
-            
-        } catch (error){
-            res.status(400).send({
-                message: error.message || error.sqlMessage
-            })
-        }
-}
+    if (!name || !email || !data) {
+      res.status(400).send("Preencha todos os campos");
+    }
+
+    //consultar o banco de dados
+    const id: string = Date.now() + Math.ceil(Math.random()).toString();
+
+    await insertStudant(id, name, email, data);
+
+    //responder a requisição
+    res.send("Studant created!");
+  } catch (error: any) {
+    res.status(400).send({
+      message: error.message || error.sqlMessage,
+    });
+  }
+};
