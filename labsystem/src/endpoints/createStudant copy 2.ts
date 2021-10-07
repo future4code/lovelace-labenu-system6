@@ -13,7 +13,7 @@ export default async function createStudant(
             //validar saídas do banco
 
             //responder a requisição
-        } catch (error){
+        } catch (error: any){
             res.status(400).send({
                 message: error.message || error.sqlMessage
             })
