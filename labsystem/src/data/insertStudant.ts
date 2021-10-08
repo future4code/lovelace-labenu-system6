@@ -1,5 +1,4 @@
 import { connection } from "../connection";
-
 export const insertStudant = async (
   id: string,
   name: string,
@@ -8,7 +7,7 @@ export const insertStudant = async (
   hobby: string
 ): Promise<void> => {
   const selectHobby = await connection("system6_hobby")
-    .select("name_hobby as nh")
+    .select("name_hobby")
     .where({ name_hobby: hobby });
 
   if (!selectHobby[0]) {
