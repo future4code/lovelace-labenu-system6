@@ -6,8 +6,13 @@ export const createStudant = async (req: Request, res: Response) => {
     //validar entradas da requisição
     const { name, email, data, hobby } = req.body;
 
-    if (!name || !email || !data) {
+    if (!name || !email || !data || !hobby) {
       res.status(400).send("Preencha todos os campos");
+    }
+
+    //validar se todas entradas estão vazias
+    if (!name && !email && !data && !hobby) {
+      res.status(400).send("Nenhum campo foi preenchido.");
     }
 
     //consultar o banco de dados
