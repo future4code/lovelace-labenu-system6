@@ -15,7 +15,7 @@ export const insertClasses = async (
       date_initial,
       final_date,
       module,
-      type
+      type,
     })
     .into("system6_classes");
 };

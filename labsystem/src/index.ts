@@ -2,9 +2,11 @@ import { AddressInfo } from "net";
 import express, { Express } from "express";
 import cors from "cors";
 import { createStudant } from "./endpoints/createStudant";
-import {createTeacher} from "./endpoints/createTeacher";
+import { createTeacher } from "./endpoints/createTeacher";
 import { createClasses } from "./endpoints/createClass";
 import { addStudantClass } from "./endpoints/addStudantClass";
+import { addTeacherToClass } from "./endpoints/addTeatcherClass";
+import { getAge } from "./endpoints/getAge";
 
 const app: Express = express();
 
@@ -17,9 +19,13 @@ app.put("/studant", createStudant);
 //endpoint de criar professores
 app.put("/teacher", createTeacher);
 
-app.post("/classes", createClasses)
+app.post("/classes", createClasses);
 
-app.put("/classes/:id", addStudantClass)
+app.put("/classes/:id", addStudantClass);
+
+app.put("/classes/teacher/:id", addTeacherToClass);
+
+app.get("/studant/:id", getAge);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
