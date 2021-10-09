@@ -2,24 +2,9 @@ import { connection } from "../connection";
 
 export const insertTeatcherClass = async (
   id: string,
-  name: string,
-  email: string,
-  data: Date,
-  specialty: string
+  classes_id: string
 ): Promise<any> => {
-  const result = await connection
-    .insert({
-      id,
-      name,
-      email,
-      data,
-      specialty,
-    })
-    .into("system6_teachers");
+  await connection("system6_teachers").update({ classes_id }).where({ id });
 
-  if (result) {
-        
-  }
-
-  return result;
+  //validar id do usuário se existe
 };
