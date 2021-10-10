@@ -7,6 +7,7 @@ import { createClasses } from "./endpoints/createClass";
 import { addStudantClass } from "./endpoints/addStudantClass";
 import { addTeacherToClass } from "./endpoints/addTeatcherClass";
 import { getAge } from "./endpoints/getAge";
+import { getStudantClass } from "./endpoints/getStudantClass";
 
 const app: Express = express();
 
@@ -26,6 +27,8 @@ app.put("/classes/:id", addStudantClass);
 app.put("/classes/teacher/:id", addTeacherToClass);
 
 app.get("/studant/:id", getAge);
+
+app.get("/studant/class/:name", getStudantClass);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

@@ -13,27 +13,26 @@ export const insertTeacher = async (
 
   if (!selectSpecialty[0]) {
     throw new Error("especialidade não encontrada!");
-  } else {
-    await connection("system6_teachers").insert({
-      id,
-      name,
-      email,
-      data,
-      specialty,
-    });
-
-    const teachersExist = await connection("system6_teachers")
-      .select("id as id_teacher")
-      .where({ email });
-
-    const id_teachers_save = teachersExist[0].id_teacher;
-    if (id_teachers_save <= 0) {
-      throw new Error("id não encontrado!");
-    }
-
-    await connection("system6_teachers_specialties").insert({
-      teachers_id: id_teachers_save,
-      name_specialties: specialty,
-    });
   }
+
+  const teachersExist = await connection("system6_teachers")
+    .select("id")
+    .where({ email });
+
+  if (teachersExist.length) {
+    throw new Error("Esse email já está cadastrado!");
+  }
+
+  await connection("system6_teachers").insert({
+    id,
+    name,
+    email,
+    data,
+    specialty,
+  });
+
+  await connection("system6_teachers_specialties").insert({
+    teachers_id: id,
+    name_specialties: specialty,
+  });
 };

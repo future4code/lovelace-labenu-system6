@@ -1,6 +1,5 @@
 import { connection } from "../connection";
 import { Studant } from "../services/types";
-import moment from "moment";
 
 export const getAgeStudantById = async (
   id: string

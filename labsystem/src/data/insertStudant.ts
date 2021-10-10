@@ -10,30 +10,29 @@ export const insertStudant = async (
     .select("name_hobby")
     .where({ name_hobby: hobby });
 
-  if (!selectHobby[0]) {
+  if (!selectHobby.length) {
     throw new Error("Hobby não encontrado!");
-  } else {
-    await connection
-      .insert({
-        id,
-        name,
-        email,
-        data,
-      })
-      .into("system6_studants");
-
-    const studantExist = await connection("system6_studants")
-      .select("id as id_studant")
-      .where({ email });
-
-    const id_studant_save = studantExist[0].id_studant;
-    if (id_studant_save <= 0) {
-      throw new Error("id não encontrado!");
-    }
-
-    await connection("system6_student_hobby").insert({
-      studants_id: id_studant_save,
-      hobby_name: hobby,
-    });
   }
+
+  const studantExist = await connection("system6_studants")
+    .select("id")
+    .where({ email });
+
+  if (studantExist.length) {
+    throw new Error("Esse email já está cadastrado!");
+  }
+
+  await connection
+    .insert({
+      id,
+      name,
+      email,
+      data,
+    })
+    .into("system6_studants");
+
+  await connection("system6_student_hobby").insert({
+    studants_id: id,
+    hobby_name: hobby,
+  });
 };
