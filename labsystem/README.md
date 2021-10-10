@@ -2,6 +2,8 @@ LAB_SYSTEMS
 
 ESTRUTURA DE DADOS
 
+LINK DESPLOY HEROKU: https://lovelace-labenu-system6.herokuapp.com/
+
     .Estudantes
     - id
     - nome
