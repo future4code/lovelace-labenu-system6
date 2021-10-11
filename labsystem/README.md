@@ -1,8 +1,15 @@
-LAB_SYSTEMS
+NOME_PROJETO: LAB_SYSTEMS6
+
+PROJETO DESENVOLVIDO POR: 
+
+João Paulo Santos Moretti
+Luan Dos Santos Melo 
+Tuana Sampaio
+
+LINK DESPLOY HEROKU: https://lovelace-labenu-system6.herokuapp.com/
 
 ESTRUTURA DE DADOS
 
-LINK DESPLOY HEROKU: https://lovelace-labenu-system6.herokuapp.com/
 
     .Estudantes
     - id
