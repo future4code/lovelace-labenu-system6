@@ -1,33 +1,95 @@
-## LabenuSystem:
+NOME_PROJETO: LAB_SYSTEMS6
 
-Você estuda na Labenu_ há tanto tempo que já parecem anos, não é? Então, hoje, vamos pedir para criar um sistema que represente o básico da nossa organização. 
+PROJETO DESENVOLVIDO POR: 
 
-Ele deve possuir, ao menos, as 3 entidades importantes:
+João Paulo Santos Moretti
+Luan Dos Santos Melo 
+Tuana Sampaio
 
-1. Estudantes 
+LINK DESPLOY HEROKU: https://lovelace-labenu-system6.herokuapp.com/
 
-    Representa estudantes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e os principais hobbies dele. 
+ESTRUTURA DE DADOS
 
-2. Docente
 
-    Representa docentes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e todas as especialidades dele. Há 7 especialidades: React, Redux, CSS, Testes, Typescript, Programação Orientada a Objetos e Backend
+    .Estudantes
+    - id
+    - nome
+    - email
+    - data de nascimento
+    - principais hobbies
 
-3. Turma
+    .Docentes
+    - id
+    - nome 
+    - email
+    - data de nascimento
+    - todas as suas especialidades
 
-    Toda turma é composta das seguintes características: id, nome, data de início, data de término, lista de professores responsáveis, uma lista de alunos e módulo atual em que a turma está.
+    .Turma
+    - id
+    - nome 
+    - data de início
+    - data de término 
+    - lista de professores responsáveis
+    - uma lista de alunos e módulo atual em que a turma está.
 
-    O módulo pode assumir os valores de 1 a 7 ou `undefined`, indicando que as aulas dessa turma ainda não começaram. Para esse exercício, vamos considerar que existam dois tipos de turma: integral ou noturna. Há uma restrição para o nome das turmas noturnas: tem que terminar com `-na-night`.
 
-As funcionalidades básicas são:
+    ENDPOINTS
 
-→ Criar estudante;
+    → Criar estudante
+        - Método: PUT
+        - Path: /studant
+        - Body:
+            . id
+            . nome 
+            . email
+            . data de nascimento
+            . hobbies
 
-→ Criar docente;
+    → Criar docente:
+        - Método: PUT
+        - Path: /teacher
+        - Body:
+            . id
+            . nome 
+            . email
+            . data de nascimento
+            . especialidades
 
-→ Criar turma;
+    → Criar turma:
+        - Método: PUT
+        - Path: /cohort
+        - Body:
+            . id
+            . nome 
+            . data de início
+            . data de término 
+            . lista de professores responsáveis
+            . lista de alunos e módulo atual 
 
-→ Adicionar estudante na turma;
+    → Adicionar estudante na turma;
+        - Método: PUT
+        - Path: /studant/:id
+        - Body:
+            . id
+            . nome 
+            . data de início
+            . data de término 
+            . lista de professores responsáveis
+            . lista de alunos e módulo atual 
 
-→ Adicionar docente na turma;
+    → Adicionar docente na turma:
+        - Método: PUT
+        - Path: /teacher/:id
+        - Body:
+            . id
+            . nome 
+            . email
+            . data de nascimento
+            . especialidades
 
-→ Pegar a idade de algum estudante a partir do id
+    → Pegar a idade de algum estudante a partir do id:
+        - Método: GET
+        - Path: /studant/:id
+        - Body de resposta: (Retornar um erro se não encontrar)  
+            .id 
