@@ -1,0 +1,40 @@
+import { AddressInfo } from "net";
+import express, { Express } from "express";
+import cors from "cors";
+import { createStudant } from "./endpoints/createStudant";
+import { createTeacher } from "./endpoints/createTeacher";
+import { createClasses } from "./endpoints/createClass";
+import { addStudantClass } from "./endpoints/addStudantClass";
+import { addTeacherToClass } from "./endpoints/addTeatcherClass";
+import { getAge } from "./endpoints/getAge";
+import { getStudantClass } from "./endpoints/getStudantClass";
+
+const app: Express = express();
+
+app.use(express.json());
+app.use(cors());
+
+//endpoint de criar estudante
+app.put("/studant", createStudant);
+
+//endpoint de criar professores
+app.put("/teacher", createTeacher);
+
+app.post("/classes", createClasses);
+
+app.put("/classes/:id", addStudantClass);
+
+app.put("/classes/teacher/:id", addTeacherToClass);
+
+app.get("/studant/:id", getAge);
+
+app.get("/studant/class/:name", getStudantClass);
+
+const server = app.listen(process.env.PORT || 3003, () => {
+  if (server) {
+    const address = server.address() as AddressInfo;
+    console.log(`Server is running in http://localhost: ${address.port}`);
+  } else {
+    console.error(`Failure upon starting server.`);
+  }
+});
